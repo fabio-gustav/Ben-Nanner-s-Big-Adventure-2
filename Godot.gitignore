@@ -1,0 +1,15 @@
+# Godot 4+ specific ignores
+projectenigma/.godot/
+
+# Godot-specific ignores
+projectenigma/.import/
+projectenigma/export.cfg
+projectenigma/export_presets.cfg
+
+# Imported translations (automatically generated from CSV files)
+projectenigma/*.translation
+
+# Mono-specific ignores
+projectenigma/.mono/
+projectenigma/data_*/
+projectenigma/mono_crash.*.json
