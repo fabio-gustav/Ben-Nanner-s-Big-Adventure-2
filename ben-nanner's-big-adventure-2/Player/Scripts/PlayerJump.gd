@@ -3,29 +3,23 @@ extends State
 @export var idle_state : State
 @export var run_state : State
 
-#@onready var jumpVelocity:float
-#@onready var jumpGravity:float
 
-#func init() -> void:
-	#jumpVelocity = ((2.0 * parent.jumpHeight) / parent.risingJumpTime) * -1.0
-	#jumpGravity = ((-2.0 * parent.jumpHeight) / (parent.jump_time * parent.jump_time)) * -1.0
+func enter():
+	super()
+	parent.player_collider.disabled = true
+	parent.velocity.y = parent.jump_velocity
+	parent.position.y -= 1
+	
+func exit():
+	parent.position.y = parent.ground_level
+	parent.player_collider.disabled = false
+
+func process_input(_event: InputEvent) -> State:
+	return null
 #
-#func enter():
-	#super()
-	#parent.parry_available = true
-	#parent.velocity.y += jumpVelocity
-	#parent.jump_available = false
-	#
-#func exit():
-	#parent.velocity.y = 0.0
-	#jumpGravity = ((-2.0 * parent.jumpHeight) / (parent.risingJumpTime * parent.risingJumpTime)) * -1.0
-#
-#func process_input(event: InputEvent) -> State:
-	#return null
-#
-#func process_physics(delta: float) -> State:
-	#parent.velocity.y += jumpGravity * delta
-	#
-	##if !Input.is_action_pressed("jump"):
-		##jumpGravity = ((-6.0 * parent.jumpHeight) / (parent.risingJumpTime * parent.risingJumpTime)) * -1.0
-	#return null
+func process_physics(_delta: float) -> State:
+	parent.velocity.y += parent.gravity * _delta
+	if parent.position.y >= parent.ground_level:
+		parent.velocity.y = 0.0
+		return run_state
+	return null

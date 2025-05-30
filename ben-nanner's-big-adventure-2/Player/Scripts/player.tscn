@@ -13,10 +13,12 @@ radius = 3.0
 height = 18.0
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 14
 motion_mode = 1
 script = ExtResource("1_7oucb")
+jump_time = 0.25
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="PlayerCollider" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_onrkg")
@@ -39,8 +41,10 @@ script = ExtResource("3_g2ysn")
 jump_state = NodePath("../PlayerJump")
 run_state = NodePath("../PlayerRun")
 
-[node name="PlayerRun" type="Node" parent="MovementStateMachine"]
+[node name="PlayerRun" type="Node" parent="MovementStateMachine" node_paths=PackedStringArray("jump_state", "idle_state")]
 script = ExtResource("4_g2ysn")
+jump_state = NodePath("../PlayerJump")
+idle_state = NodePath("../PlayerIdle")
 
 [node name="PlayerJump" type="Node" parent="MovementStateMachine" node_paths=PackedStringArray("idle_state", "run_state")]
 script = ExtResource("5_c3irx")

@@ -9,16 +9,17 @@ func enter():
 func exit():
 	pass
 
-func process_input(event: InputEvent) -> State:
-	if parent.jump_buffer or Input.is_action_just_pressed("jump") :
-		parent.jump_buffer = false
+func process_input(_event: InputEvent) -> State:
+	if Input.is_action_just_pressed("jump") :
+		#parent.jump_buffer = false
+		parent.ground_level = parent.position.y
 		return jump_state
 	return null
 
-func process_physics(delta: float) -> State:
+func process_physics(_delta: float) -> State:
 	parent.velocity = parent.velocity.lerp(get_movement_input()*parent.speed,parent.acceleration)
-	
 	if get_movement_input() == Vector2.ZERO:
 		parent.velocity.x  = lerp(parent.velocity.x, 0.0, parent.friction)
-		pass
+	if parent.velocity.length() < 0.01:
+		return idle_state 
 	return null
