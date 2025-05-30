@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://dc5ymg83yj2gg"]
+
+[ext_resource type="PackedScene" uid="uid://bnomfk3lvd0so" path="res://World/stage.tscn" id="1_dtjkg"]
+[ext_resource type="Script" uid="uid://cp3f1cgfqn133" path="res://Scenes/test_level.gd" id="1_eglq2"]
+[ext_resource type="PackedScene" uid="uid://do1dahnvpkvav" path="res://Player/Scenes/player.tscn" id="2_eglq2"]
+[ext_resource type="PackedScene" uid="uid://16sf24sje0v3" path="res://Player/Scenes/player_camera.tscn" id="4_rsyfn"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1c2mv"]
+radius = 2.0
+height = 12.0
+
+[node name="TestLevel" type="Node2D"]
+script = ExtResource("1_eglq2")
+
+[node name="Stage" parent="." instance=ExtResource("1_dtjkg")]
+position = Vector2(197, 43)
+
+[node name="Player" parent="." instance=ExtResource("2_eglq2")]
+position = Vector2(56, 54)
+
+[node name="WorldObjects" type="Node2D" parent="."]
+
+[node name="Object" type="StaticBody2D" parent="WorldObjects"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldObjects/Object"]
+position = Vector2(128, 56)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_1c2mv")
+
+[node name="Camera2D" parent="." instance=ExtResource("4_rsyfn")]
+position = Vector2(50, 32)

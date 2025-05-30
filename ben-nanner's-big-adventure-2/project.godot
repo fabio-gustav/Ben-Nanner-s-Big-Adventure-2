@@ -13,7 +13,13 @@ config_version=5
 config/name="Ben Nanner's Big Adventure 2"
 run/main_scene="uid://dc5ymg83yj2gg"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=100
+window/size/viewport_height=64
+window/size/mode=2
+window/stretch/mode="viewport"
 
 [input]
 
