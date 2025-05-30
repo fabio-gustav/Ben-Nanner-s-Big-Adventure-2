@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://do1dahnvpkvav"]
+
+[ext_resource type="Script" uid="uid://byq310kvjrxu2" path="res://Player/Scripts/player.gd" id="1_7oucb"]
+[ext_resource type="Script" uid="uid://bcx2cprk6qix3" path="res://Componenets/state_machine.gd" id="2_0xc2y"]
+[ext_resource type="Texture2D" uid="uid://uj0vh01lbcsq" path="res://TempAssets/assets/art/characters/player.png" id="2_n8m8m"]
+[ext_resource type="Script" uid="uid://yjhfoc2smey7" path="res://Player/Scripts/PlayerIdle.gd" id="3_g2ysn"]
+[ext_resource type="Script" uid="uid://dj7ec3egpmsh7" path="res://Player/Scripts/PlayerRunning.gd" id="4_g2ysn"]
+[ext_resource type="Script" uid="uid://bdyebj15e3eqj" path="res://Player/Scripts/PlayerJump.gd" id="5_c3irx"]
+[ext_resource type="Script" uid="uid://1ai6mow7kwru" path="res://Player/Scripts/player_move_component.gd" id="6_c3irx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
+radius = 3.0
+height = 18.0
+
+[node name="Player" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_7oucb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_onrkg")
+
+[node name="CharacterSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -24)
+texture = ExtResource("2_n8m8m")
+hframes = 10
+vframes = 10
+
+[node name="ShadowSprite" type="Sprite2D" parent="."]
+
+[node name="MovementStateMachine" type="Node" parent="." node_paths=PackedStringArray("intitialState")]
+script = ExtResource("2_0xc2y")
+intitialState = NodePath("PlayerIdle")
+
+[node name="PlayerIdle" type="Node" parent="MovementStateMachine" node_paths=PackedStringArray("jump_state", "run_state")]
+script = ExtResource("3_g2ysn")
+jump_state = NodePath("../PlayerJump")
+run_state = NodePath("../PlayerRun")
+
+[node name="PlayerRun" type="Node" parent="MovementStateMachine"]
+script = ExtResource("4_g2ysn")
+
+[node name="PlayerJump" type="Node" parent="MovementStateMachine" node_paths=PackedStringArray("idle_state", "run_state")]
+script = ExtResource("5_c3irx")
+idle_state = NodePath("../PlayerIdle")
+run_state = NodePath("../PlayerRun")
+
+[node name="PlayerMoveComponent" type="Node" parent="."]
+script = ExtResource("6_c3irx")

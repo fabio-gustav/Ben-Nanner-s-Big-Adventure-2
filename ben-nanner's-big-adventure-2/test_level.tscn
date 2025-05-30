@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dc5ymg83yj2gg"]
+
+[ext_resource type="PackedScene" uid="uid://do1dahnvpkvav" path="res://Player/Scripts/player.tscn" id="1_gojnm"]
+[ext_resource type="Texture2D" uid="uid://co266uuk32i55" path="res://TempAssets/assets/art/backgrounds/bar-background.png" id="2_1c2mv"]
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="Level" type="Sprite2D" parent="."]
+texture = ExtResource("2_1c2mv")
+
+[node name="Player" parent="." instance=ExtResource("1_gojnm")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(5, 5)
