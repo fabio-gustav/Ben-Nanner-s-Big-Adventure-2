@@ -8,6 +8,11 @@ extends State
 func enter() -> void:
 	super()
 	parent.velocity = Vector2.ZERO
+	parent.animation_player.play("idle")
+
+func exit() -> void:
+	print("exiting")
+	parent.animation_player.stop(false)
 
 func process_input(_event: InputEvent) -> State:
 	if Input.is_action_just_pressed("jump"):
