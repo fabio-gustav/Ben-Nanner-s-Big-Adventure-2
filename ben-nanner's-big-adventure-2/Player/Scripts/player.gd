@@ -15,6 +15,7 @@ extends CharacterBody2D
 @onready var player_collider: CollisionShape2D = $PlayerCollider
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var attack_component: Area2D = $AttackComponent
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @onready var jump_buffer : bool
 @onready var ground_level : float

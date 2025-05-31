@@ -3,4 +3,8 @@
 [ext_resource type="Script" uid="uid://crff81phtqqgg" path="res://Componenets/Scripts/attack_component.gd" id="1_4sx70"]
 
 [node name="AttackComponent" type="Area2D"]
+monitorable = false
 script = ExtResource("1_4sx70")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+debug_color = Color(0.926569, 0.115357, 0.604054, 0.42)

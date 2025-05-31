@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dc8bnkaqumer2"]
+
+[ext_resource type="PackedScene" uid="uid://ci3lvsf3qqvm5" path="res://Componenets/Scenes/attack_component.tscn" id="1_rvc30"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_80sjv"]
+
+[node name="DamageZone" type="Node2D"]
+
+[node name="AttackComponent" parent="." instance=ExtResource("1_rvc30")]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent"]
+shape = SubResource("RectangleShape2D_80sjv")
+debug_color = Color(0.970695, 0, 0.452995, 0.42)

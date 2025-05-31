@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://b543ousj7s1bu"]
+
+[ext_resource type="Texture2D" uid="uid://ce7nfcx72j45w" path="res://TempAssets/assets/art/props/barrel.png" id="1_vw7gp"]
+[ext_resource type="PackedScene" uid="uid://bhq374o5vwk1d" path="res://Componenets/Scenes/hurtbox_component.tscn" id="2_01oss"]
+[ext_resource type="PackedScene" uid="uid://bblo0gd5ah36e" path="res://Componenets/Scenes/health_component.tscn" id="3_l0lha"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_64brw"]
+radius = 3.0
+height = 18.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ahcrl"]
+size = Vector2(14, 12)
+
+[node name="Barrel" type="Node2D"]
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -13)
+texture = ExtResource("1_vw7gp")
+hframes = 2
+
+[node name="Collider" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collider"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_64brw")
+
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_01oss")]
+collision_layer = 4
+collision_mask = 16
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" parent="HurtboxComponent" index="0"]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_ahcrl")
+debug_color = Color(0.245887, 0.627117, 0.310845, 0.42)
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_l0lha")]
+MAX_HEALTH = 15.0
+
+[editable path="HurtboxComponent"]
