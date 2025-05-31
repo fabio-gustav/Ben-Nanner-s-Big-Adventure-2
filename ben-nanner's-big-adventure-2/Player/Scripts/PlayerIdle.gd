@@ -18,7 +18,10 @@ func process_input(_event: InputEvent) -> State:
 		return attack_state
 	if get_movement_input() != Vector2.ZERO:
 		return run_state
-	
+	if Input.is_action_just_pressed("talk"):
+		if Dialogic.current_timeline != null:
+			return
+		Dialogic.start('test_timeline')
 	return null
 
 func process_physics(_delta: float) -> State:

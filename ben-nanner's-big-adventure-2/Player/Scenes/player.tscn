@@ -19,6 +19,33 @@ height = 18.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n8jjm"]
 
+[sub_resource type="Animation" id="Animation_b4k72"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [20]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AttackComponent:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="Animation" id="Animation_n8jjm"]
 resource_name = "light_punch"
 length = 0.15
@@ -61,33 +88,6 @@ tracks/2/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="Animation" id="Animation_b4k72"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [20]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AttackComponent:monitoring")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nhcly"]
 _data = {
 &"RESET": SubResource("Animation_b4k72"),
@@ -125,10 +125,11 @@ jump_state = NodePath("../PlayerJump")
 run_state = NodePath("../PlayerRun")
 attack_state = NodePath("../PlayerAttack")
 
-[node name="PlayerRun" type="Node" parent="MovementStateMachine" node_paths=PackedStringArray("jump_state", "idle_state")]
+[node name="PlayerRun" type="Node" parent="MovementStateMachine" node_paths=PackedStringArray("jump_state", "idle_state", "attack_state")]
 script = ExtResource("4_g2ysn")
 jump_state = NodePath("../PlayerJump")
 idle_state = NodePath("../PlayerIdle")
+attack_state = NodePath("../PlayerAttack")
 
 [node name="PlayerJump" type="Node" parent="MovementStateMachine" node_paths=PackedStringArray("idle_state", "run_state")]
 script = ExtResource("5_c3irx")
@@ -141,8 +142,10 @@ script = ExtResource("7_vov0p")
 [node name="PlayerGround" type="Node" parent="MovementStateMachine"]
 script = ExtResource("8_yq18l")
 
-[node name="PlayerAttack" type="Node" parent="MovementStateMachine" node_paths=PackedStringArray("idle_state")]
+[node name="PlayerAttack" type="Node" parent="MovementStateMachine" node_paths=PackedStringArray("jump_state", "run_state", "idle_state")]
 script = ExtResource("9_n8jjm")
+jump_state = NodePath("../PlayerJump")
+run_state = NodePath("../PlayerRun")
 idle_state = NodePath("../PlayerIdle")
 
 [node name="PlayerMoveComponent" type="Node" parent="."]

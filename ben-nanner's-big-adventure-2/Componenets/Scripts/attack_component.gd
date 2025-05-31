@@ -9,5 +9,6 @@ func _ready() -> void:
 	attack.attack_position = position
 	attack.knockback_force = 0
 
+#need to set masks correctly or this will break
 func _on_area_entered(area: Area2D) -> void:
 	area.damage(attack)

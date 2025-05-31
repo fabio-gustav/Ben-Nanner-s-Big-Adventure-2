@@ -2,6 +2,7 @@ extends State
 
 @export var jump_state: State
 @export var idle_state: State
+@export var attack_state: State
 
 func enter():
 	super()
@@ -14,6 +15,8 @@ func process_input(_event: InputEvent) -> State:
 		#parent.jump_buffer = false
 		parent.ground_level = parent.position.y
 		return jump_state
+	if Input.is_action_just_pressed("light_punch"):
+		return attack_state
 	return null
 
 func process_physics(_delta: float) -> State:
