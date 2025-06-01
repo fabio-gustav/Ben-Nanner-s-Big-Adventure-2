@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=4 uid="uid://bnomfk3lvd0so"]
+[gd_scene load_steps=7 format=4 uid="uid://bnomfk3lvd0so"]
 
 [ext_resource type="Texture2D" uid="uid://b4epb3i60s3je" path="res://TempAssets/assets/Stage Layers/tileset.png" id="1_qwd82"]
+[ext_resource type="AudioStream" uid="uid://dcrpgvkgf3vrl" path="res://Sounds/Music/MonkeyModeLevel1.wav" id="2_kxuhr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kxuhr"]
 texture = ExtResource("1_qwd82")
@@ -557,3 +558,6 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Bottom"]
 position = Vector2(289.25, 22)
 shape = SubResource("RectangleShape2D_rnkuw")
+
+[node name="AudioManager" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_kxuhr")

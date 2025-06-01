@@ -31,8 +31,9 @@ overrides = {
 "box_size": "Vector2(1200, 280)",
 "name_label_custom_size": "42.0",
 "name_label_use_global_size": "false",
-"text_custom_color": "Color(0.685937, 0.851563, 0.0515594, 1)",
+"text_custom_color": "Color(0.829273, 0.910156, 0.11377, 1)",
 "text_custom_size": "32.0",
+"text_use_global_color": "false",
 "text_use_global_size": "false"
 }
 

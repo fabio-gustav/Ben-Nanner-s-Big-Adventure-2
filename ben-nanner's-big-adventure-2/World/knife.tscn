@@ -1,0 +1,78 @@
+[gd_scene load_steps=7 format=3 uid="uid://cc4bgurotbs6p"]
+
+[ext_resource type="PackedScene" uid="uid://c6acnbagah3dc" path="res://World/collectible.tscn" id="1_qehjq"]
+[ext_resource type="Texture2D" uid="uid://bhmw6trykqgvq" path="res://TempAssets/assets/art/props/knife.png" id="2_4j1ir"]
+
+[sub_resource type="Animation" id="Animation_480uj"]
+resource_name = "falling"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollectibleSprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0.0, 1.5708, 3.14159, 4.71239]
+}
+
+[sub_resource type="Animation" id="Animation_xy3e0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollectibleSprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_cxpqr"]
+resource_name = "grounded"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollectibleSprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5708]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hljth"]
+_data = {
+&"RESET": SubResource("Animation_xy3e0"),
+&"falling": SubResource("Animation_480uj"),
+&"grounded": SubResource("Animation_cxpqr")
+}
+
+[node name="Knife" instance=ExtResource("1_qehjq")]
+
+[node name="CollectibleSprite" parent="." index="1"]
+texture_filter = 1
+position = Vector2(0, -41)
+scale = Vector2(6, 6)
+texture = ExtResource("2_4j1ir")
+centered = false
+offset = Vector2(-8, -8)
+
+[node name="AnimationPlayer" parent="." index="4"]
+libraries = {
+&"": SubResource("AnimationLibrary_hljth")
+}
+
+[node name="Falling" parent="StateMachine" index="0" node_paths=PackedStringArray("grounded_state")]
+grounded_state = NodePath("../Grounded")
