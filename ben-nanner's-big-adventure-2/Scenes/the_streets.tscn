@@ -1,25 +1,76 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpmkmkxuwgw6g"]
+[gd_scene load_steps=8 format=4 uid="uid://dpmkmkxuwgw6g"]
 
 [ext_resource type="PackedScene" uid="uid://bnomfk3lvd0so" path="res://World/stage.tscn" id="1_267t3"]
 [ext_resource type="Script" uid="uid://cp3f1cgfqn133" path="res://Scenes/test_level.gd" id="1_wxiv7"]
 [ext_resource type="PackedScene" uid="uid://do1dahnvpkvav" path="res://Player/Scenes/player.tscn" id="2_wxiv7"]
+[ext_resource type="Texture2D" uid="uid://b4epb3i60s3je" path="res://TempAssets/assets/Stage Layers/tileset.png" id="3_c3yh6"]
 [ext_resource type="PackedScene" uid="uid://16sf24sje0v3" path="res://Player/Scenes/player_camera.tscn" id="4_dau0d"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5yexc"]
+texture = ExtResource("3_c3yh6")
+0:0/size_in_atlas = Vector2i(14, 6)
+0:0/0 = 0
+15:0/size_in_atlas = Vector2i(2, 6)
+15:0/0 = 0
+18:0/size_in_atlas = Vector2i(14, 6)
+18:0/0 = 0
+0:7/size_in_atlas = Vector2i(3, 6)
+0:7/0 = 0
+4:7/size_in_atlas = Vector2i(3, 6)
+4:7/0 = 0
+8:7/size_in_atlas = Vector2i(3, 6)
+8:7/0 = 0
+12:7/size_in_atlas = Vector2i(3, 6)
+12:7/0 = 0
+16:7/size_in_atlas = Vector2i(3, 6)
+16:7/0 = 0
+0:14/size_in_atlas = Vector2i(2, 9)
+0:14/0 = 0
+3:14/size_in_atlas = Vector2i(7, 9)
+3:14/0 = 0
+11:14/size_in_atlas = Vector2i(7, 6)
+11:14/0 = 0
+19:14/size_in_atlas = Vector2i(7, 6)
+19:14/0 = 0
+27:14/size_in_atlas = Vector2i(6, 6)
+27:14/0 = 0
+20:7/size_in_atlas = Vector2i(2, 6)
+20:7/0 = 0
+23:7/size_in_atlas = Vector2i(2, 6)
+23:7/0 = 0
+26:8/size_in_atlas = Vector2i(2, 5)
+26:8/0 = 0
+29:7/size_in_atlas = Vector2i(2, 6)
+29:7/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_hbfkw"]
+tile_size = Vector2i(8, 8)
+sources/0 = SubResource("TileSetAtlasSource_5yexc")
 
 [node name="TheStreets" type="Node2D"]
 script = ExtResource("1_wxiv7")
+camera_offset = 400
 
 [node name="Stage" parent="." instance=ExtResource("1_267t3")]
-position = Vector2(1056, 384)
 
 [node name="Background" parent="Stage" index="0"]
+position = Vector2(1075, 499)
 scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AADz//n/AAADAA4AAAD8//n/AAAAAA4AAAABAPn/AAADAA4AAAAPAPn/AAADAA4AAAAdAPn/AAADAA4AAAAgAPn/AAAAAA4AAAAhAPn/AAAAAA4AAAAiAPn/AAAAAA4AAAAkAPn/AAAAAA4AAAAmAPn/AAAAAA4AAAAnAPn/AAAAAA4AAAArAPn/AAADAA4AAADl//n/AAADAA4AAADs/+r/AAAAAAAAAAD8/+r/AAAPAAAAABABAOr/AAAAAAcAAAAJAOr/AAAbAA4AAAASAOr/AAAMAAcAAAAYAOr/AAAEAAcAAAAeAOr/AAAEAAcAAAAkAOr/AAAQAAcAAAAqAOr/AAAAAAcAABA=")
+tile_set = SubResource("TileSet_hbfkw")
+
+[node name="CollisionShape2D" parent="Stage/Background/Top" index="0"]
+position = Vector2(282.75, -131.75)
+
+[node name="CollisionShape2D" parent="Stage/Background/Bottom" index="0"]
+position = Vector2(289.25, 25)
 
 [node name="World Objects" type="Node2D" parent="."]
 
 [node name="Player" parent="World Objects" instance=ExtResource("2_wxiv7")]
-position = Vector2(574, 488)
+position = Vector2(385, 216)
 
 [node name="Camera2D" parent="." instance=ExtResource("4_dau0d")]
-position = Vector2(956, 45)
+position = Vector2(962, 99)
 
 [editable path="Stage"]

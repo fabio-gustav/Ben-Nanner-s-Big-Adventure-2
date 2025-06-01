@@ -18,7 +18,7 @@ radius = 34.0
 height = 182.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n8jjm"]
-size = Vector2(4.40116, 3.72171)
+size = Vector2(122, 99)
 
 [sub_resource type="Animation" id="Animation_b4k72"]
 length = 0.001
@@ -45,6 +45,22 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_nhcly"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [2, 1, 0]
 }
 
 [sub_resource type="Animation" id="Animation_n8jjm"]
@@ -87,22 +103,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_nhcly"]
-resource_name = "idle"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.666667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [2, 1, 0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nhcly"]
@@ -177,8 +177,7 @@ collision_layer = 16
 collision_mask = 12
 
 [node name="CollisionShape2D" parent="AttackComponent" index="0"]
-position = Vector2(125, -149)
-scale = Vector2(32.5633, 18.7751)
+position = Vector2(156, -142)
 shape = SubResource("RectangleShape2D_n8jjm")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
