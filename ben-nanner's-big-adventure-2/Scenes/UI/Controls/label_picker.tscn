@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwj2n7hxhrq6f"]
+
+[ext_resource type="PackedScene" uid="uid://do41dxtj5w8k2" path="res://Scenes/UI/Controls/activatable_control.tscn" id="1_6x13g"]
+[ext_resource type="Script" uid="uid://b8p6ey6ro86mw" path="res://Scenes/UI/Controls/label_picker.gd" id="2_csrx7"]
+
+[node name="LabelPicker" instance=ExtResource("1_6x13g")]
+script = ExtResource("2_csrx7")
+
+[node name="Label" parent="." index="0"]
+horizontal_alignment = 1

@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=3 uid="uid://bu0nhg4pxetry"]
+
+[ext_resource type="PackedScene" uid="uid://do41dxtj5w8k2" path="res://Scenes/UI/Controls/activatable_control.tscn" id="1_lvpyt"]
+[ext_resource type="Texture2D" uid="uid://bw4msit1au6f1" path="res://TempAssets/assets/art/ui/white_sq.png" id="2_1sarl"]
+[ext_resource type="Script" uid="uid://c6cim3rpco8xu" path="res://Scenes/UI/Controls/range_picker.gd" id="2_plusy"]
+
+[node name="RangePicker" instance=ExtResource("1_lvpyt")]
+script = ExtResource("2_plusy")
+current_value = 5
+max_value = 9
+
+[node name="TicksContainer" type="HBoxContainer" parent="." index="1"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="TicksContainer" index="0"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+texture = ExtResource("2_1sarl")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="TicksContainer" index="1"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+texture = ExtResource("2_1sarl")
+stretch_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="TicksContainer" index="2"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+texture = ExtResource("2_1sarl")
+stretch_mode = 2
+
+[node name="TextureRect4" type="TextureRect" parent="TicksContainer" index="3"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+texture = ExtResource("2_1sarl")
+stretch_mode = 2
+
+[node name="TextureRect5" type="TextureRect" parent="TicksContainer" index="4"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+texture = ExtResource("2_1sarl")
+stretch_mode = 2
+
+[node name="TextureRect6" type="TextureRect" parent="TicksContainer" index="5"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+texture = ExtResource("2_1sarl")
+stretch_mode = 2
+
+[node name="TextureRect7" type="TextureRect" parent="TicksContainer" index="6"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+texture = ExtResource("2_1sarl")
+stretch_mode = 2
+
+[node name="TextureRect8" type="TextureRect" parent="TicksContainer" index="7"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+texture = ExtResource("2_1sarl")
+stretch_mode = 2
+
+[node name="TextureRect9" type="TextureRect" parent="TicksContainer" index="8"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+texture = ExtResource("2_1sarl")
+stretch_mode = 2
+
+[node name="TextureRect10" type="TextureRect" parent="TicksContainer" index="9"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+texture = ExtResource("2_1sarl")
+stretch_mode = 2

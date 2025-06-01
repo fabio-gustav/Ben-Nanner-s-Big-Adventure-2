@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://do41dxtj5w8k2"]
+
+[ext_resource type="Script" uid="uid://ctm7oslrgwtpd" path="res://Scenes/UI/Controls/activatable_control.gd" id="1_sgov5"]
+
+[node name="ActivatableControl" type="HBoxContainer"]
+theme_override_constants/separation = 2
+script = ExtResource("1_sgov5")
+color_default = Color(0.439216, 0.439216, 0.439216, 1)
+color_active = Color(0.815686, 0.815686, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Option"

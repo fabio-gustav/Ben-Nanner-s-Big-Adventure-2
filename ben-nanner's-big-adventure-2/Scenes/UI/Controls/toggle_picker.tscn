@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy424hgaxkmb0"]
+
+[ext_resource type="PackedScene" uid="uid://do41dxtj5w8k2" path="res://Scenes/UI/Controls/activatable_control.tscn" id="1_m05fy"]
+[ext_resource type="Script" uid="uid://hnlpe1osd87g" path="res://Scenes/UI/Controls/toggle_picker.gd" id="2_sbhjy"]
+
+[node name="TogglePicker" instance=ExtResource("1_m05fy")]
+script = ExtResource("2_sbhjy")
+current_value = 1
+max_value = 1
+
+[node name="ValueLabel" type="Label" parent="." index="1"]
+layout_mode = 2
+text = "ON"
