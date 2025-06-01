@@ -1,11 +1,10 @@
 [gd_scene load_steps=9 format=4 uid="uid://dpmkmkxuwgw6g"]
 
 [ext_resource type="PackedScene" uid="uid://bnomfk3lvd0so" path="res://World/stage.tscn" id="1_267t3"]
-[ext_resource type="Script" uid="uid://cp3f1cgfqn133" path="res://Scenes/test_level.gd" id="1_wxiv7"]
 [ext_resource type="PackedScene" uid="uid://do1dahnvpkvav" path="res://Player/Scenes/player.tscn" id="2_wxiv7"]
 [ext_resource type="Texture2D" uid="uid://b4epb3i60s3je" path="res://TempAssets/assets/Stage Layers/tileset.png" id="3_c3yh6"]
-[ext_resource type="PackedScene" uid="uid://cc4bgurotbs6p" path="res://World/knife.tscn" id="4_5yexc"]
 [ext_resource type="PackedScene" uid="uid://16sf24sje0v3" path="res://Player/Scenes/player_camera.tscn" id="4_dau0d"]
+[ext_resource type="PackedScene" uid="uid://bmctbemo4ac5u" path="res://Componenets/camera_stop.tscn" id="5_c3yh6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5yexc"]
 texture = ExtResource("3_c3yh6")
@@ -48,16 +47,17 @@ texture = ExtResource("3_c3yh6")
 tile_size = Vector2i(8, 8)
 sources/0 = SubResource("TileSetAtlasSource_5yexc")
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_5yexc"]
+b = Vector2(9, 985)
+
 [node name="TheStreets" type="Node2D"]
-script = ExtResource("1_wxiv7")
-camera_offset = 400
 
 [node name="Stage" parent="." instance=ExtResource("1_267t3")]
 
 [node name="Background" parent="Stage" index="0"]
-position = Vector2(1075, 499)
+position = Vector2(1072, 499)
 scale = Vector2(4, 4)
-tile_map_data = PackedByteArray("AADz//n/AAADAA4AAAD8//n/AAAAAA4AAAABAPn/AAADAA4AAAAPAPn/AAADAA4AAAAdAPn/AAADAA4AAAAgAPn/AAAAAA4AAAAhAPn/AAAAAA4AAAAiAPn/AAAAAA4AAAAkAPn/AAAAAA4AAAAmAPn/AAAAAA4AAAAnAPn/AAAAAA4AAAArAPn/AAADAA4AAADl//n/AAADAA4AAADs/+r/AAAAAAAAAAD8/+r/AAAPAAAAABABAOr/AAAAAAcAAAAJAOr/AAAbAA4AAAASAOr/AAAMAAcAAAAYAOr/AAAEAAcAAAAeAOr/AAAEAAcAAAAkAOr/AAAQAAcAAAAqAOr/AAAAAAcAABA=")
+tile_map_data = PackedByteArray("AADz//n/AAADAA4AAAD8//n/AAAAAA4AAAABAPn/AAADAA4AAAAPAPn/AAADAA4AAAAdAPn/AAADAA4AAAAgAPn/AAAAAA4AAAAhAPn/AAAAAA4AAAAiAPn/AAAAAA4AAAAkAPn/AAAAAA4AAAAmAPn/AAAAAA4AAAAnAPn/AAAAAA4AAAArAPn/AAADAA4AAAA1APn/AAAAAA4AAAA5APn/AAADAA4AAADl//n/AAADAA4AAADs/+r/AAAAAAAAAAD8/+r/AAAPAAAAABABAOr/AAAAAAcAAAAJAOr/AAAbAA4AAAASAOr/AAAMAAcAAAAYAOr/AAAEAAcAAAAeAOr/AAAEAAcAAAAkAOr/AAAQAAcAAAAqAOr/AAAAAAcAABBHAPn/AAADAA4AAABQAPn/AAAAAA4AAABVAPn/AAADAA4AAABjAPn/AAADAA4AAABxAPn/AAADAA4AAAB/APn/AAADAA4AAABfAPn/AAAAAA4AAAAvAOr/AAAdAAcAABAzAOv/AAAaAAgAAAA3AOv/AAAaAAgAAAA7AOv/AAAaAAgAAAA/AOv/AAAaAAgAAABDAOv/AAAaAAgAAABHAOv/AAAaAAgAAABLAOr/AAAdAAcAAABPAOr/AAAPAAAAAABfAOr/AAASAAAAAABvAOr/AAAPAAAAABB0AOr/AAAAAAcAAAB6AOr/AAAIAAcAAACAAOr/AAAMAAcAAACGAOr/AAAQAAcAAAA=")
 tile_set = SubResource("TileSet_hbfkw")
 
 [node name="CollisionShape2D" parent="Stage/Background/Top" index="0"]
@@ -66,15 +66,25 @@ position = Vector2(282.75, -131.75)
 [node name="CollisionShape2D" parent="Stage/Background/Bottom" index="0"]
 position = Vector2(289.25, 25)
 
-[node name="Knife" parent="Stage" instance=ExtResource("4_5yexc")]
-position = Vector2(791, 124)
+[node name="AudioManager" parent="Stage" index="1"]
+autoplay = true
 
 [node name="World Objects" type="Node2D" parent="."]
 
 [node name="Player" parent="World Objects" instance=ExtResource("2_wxiv7")]
-position = Vector2(385, 216)
+position = Vector2(839, 246)
 
-[node name="Camera2D" parent="." instance=ExtResource("4_dau0d")]
-position = Vector2(962, 99)
+[node name="Camera2D" parent="." node_paths=PackedStringArray("target") instance=ExtResource("4_dau0d")]
+position = Vector2(960, 99)
+target = NodePath("../World Objects/Player")
+
+[node name="CameraStop" parent="." instance=ExtResource("5_c3yh6")]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" parent="CameraStop" index="0"]
+position = Vector2(2716, -390)
+shape = SubResource("SegmentShape2D_5yexc")
 
 [editable path="Stage"]
+[editable path="CameraStop"]
