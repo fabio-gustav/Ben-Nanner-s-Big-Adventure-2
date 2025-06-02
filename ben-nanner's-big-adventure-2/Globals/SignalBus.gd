@@ -10,3 +10,5 @@ signal loading()
 signal dialog_finished()
 
 signal health_changed(health)
+
+signal camera_transition(follow:bool)
