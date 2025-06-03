@@ -153,7 +153,8 @@ script = ExtResource("6_c3irx")
 
 [node name="HealthComponent" parent="." instance=ExtResource("8_2hb64")]
 
-[node name="HurtboxComponent" parent="." instance=ExtResource("12_b4k72")]
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("12_b4k72")]
+health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" parent="HurtboxComponent" index="0"]
 position = Vector2(5, -137)
@@ -162,6 +163,7 @@ shape = SubResource("CapsuleShape2D_nhcly")
 [node name="AttackComponent" parent="." instance=ExtResource("9_qsune")]
 collision_layer = 16
 collision_mask = 12
+monitoring = false
 
 [node name="CollisionShape2D" parent="AttackComponent" index="0"]
 position = Vector2(156, -142)

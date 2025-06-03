@@ -1,11 +1,9 @@
-[gd_scene load_steps=14 format=4 uid="uid://dpmkmkxuwgw6g"]
+[gd_scene load_steps=10 format=4 uid="uid://dpmkmkxuwgw6g"]
 
 [ext_resource type="PackedScene" uid="uid://bnomfk3lvd0so" path="res://World/stage.tscn" id="1_267t3"]
 [ext_resource type="PackedScene" uid="uid://do1dahnvpkvav" path="res://Player/Scenes/player.tscn" id="2_wxiv7"]
-[ext_resource type="PackedScene" uid="uid://cb1xe3erfpx1o" path="res://Enemies/EnemyManager/EnemyManager.tscn" id="3_8etjg"]
 [ext_resource type="Texture2D" uid="uid://b4epb3i60s3je" path="res://TempAssets/assets/Stage Layers/tileset.png" id="3_c3yh6"]
 [ext_resource type="PackedScene" uid="uid://16sf24sje0v3" path="res://Player/Scenes/player_camera.tscn" id="4_dau0d"]
-[ext_resource type="PackedScene" uid="uid://bkkr20p4urn22" path="res://Enemies/EnemyManager/StageMarker.tscn" id="4_okuc5"]
 [ext_resource type="PackedScene" uid="uid://bmctbemo4ac5u" path="res://Componenets/camera_stop.tscn" id="5_c3yh6"]
 [ext_resource type="PackedScene" uid="uid://ciho60quxhp57" path="res://Enemies/MeleeEnemy.tscn" id="6_5yexc"]
 
@@ -50,12 +48,6 @@ texture = ExtResource("3_c3yh6")
 tile_size = Vector2i(8, 8)
 sources/0 = SubResource("TileSetAtlasSource_5yexc")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8etjg"]
-size = Vector2(42, 1591)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_okuc5"]
-size = Vector2(39, 1635)
-
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_5yexc"]
 b = Vector2(9, 985)
 
@@ -80,49 +72,20 @@ autoplay = true
 
 [node name="World Objects" type="Node2D" parent="."]
 
+[node name="MeleeEnemy" parent="World Objects" node_paths=PackedStringArray("player", "playerAttack") instance=ExtResource("6_5yexc")]
+position = Vector2(1459, 118)
+player = NodePath("../Player")
+playerAttack = NodePath("../Player/MovementStateMachine/PlayerAttack")
+
 [node name="Player" parent="World Objects" instance=ExtResource("2_wxiv7")]
 position = Vector2(839, 246)
-
-[node name="EnemyManager" parent="World Objects" node_paths=PackedStringArray("player") instance=ExtResource("3_8etjg")]
-player = NodePath("../Player")
-
-[node name="StageMarker" parent="World Objects/EnemyManager" instance=ExtResource("4_okuc5")]
-position = Vector2(1227, -766)
-stageNumber = 1
-
-[node name="CollisionShape2D" parent="World Objects/EnemyManager/StageMarker" index="0"]
-position = Vector2(11, 785.5)
-shape = SubResource("RectangleShape2D_8etjg")
-
-[node name="StageMarker2" parent="World Objects/EnemyManager" instance=ExtResource("4_okuc5")]
-position = Vector2(2144, -846)
-stageNumber = 2
-
-[node name="CollisionShape2D" parent="World Objects/EnemyManager/StageMarker2" index="0"]
-position = Vector2(9.5, 821.5)
-shape = SubResource("RectangleShape2D_okuc5")
-
-[node name="MeleeEnemy3" parent="World Objects/EnemyManager" node_paths=PackedStringArray("player", "playerAttack") instance=ExtResource("6_5yexc")]
-position = Vector2(1585, 225)
-player = NodePath("../../Player")
-playerAttack = NodePath("../../Player/MovementStateMachine/PlayerAttack")
-groupNumber = 1
-
-[node name="MeleeEnemy2" parent="World Objects/EnemyManager" node_paths=PackedStringArray("player", "playerAttack") instance=ExtResource("6_5yexc")]
-position = Vector2(2683, 225)
-player = NodePath("../../Player")
-playerAttack = NodePath("../../Player/MovementStateMachine/PlayerAttack")
-groupNumber = 2
-
-[node name="MeleeEnemy" parent="World Objects/EnemyManager" node_paths=PackedStringArray("player", "playerAttack") instance=ExtResource("6_5yexc")]
-position = Vector2(2388, 59)
-player = NodePath("../../Player")
-playerAttack = NodePath("../../Player/MovementStateMachine/PlayerAttack")
-groupNumber = 2
+health = 15
+damage = 3
+friction = 0.05
+acceleration = 0.15
 
 [node name="Camera2D" parent="." node_paths=PackedStringArray("target") instance=ExtResource("4_dau0d")]
 position = Vector2(960, 99)
-position_smoothing_enabled = true
 target = NodePath("../World Objects/Player")
 
 [node name="CameraStop" parent="." instance=ExtResource("5_c3yh6")]
@@ -137,6 +100,4 @@ shape = SubResource("SegmentShape2D_5yexc")
 [editable path="World Objects/Player"]
 [editable path="World Objects/Player/HurtboxComponent"]
 [editable path="World Objects/Player/AttackComponent"]
-[editable path="World Objects/EnemyManager/StageMarker"]
-[editable path="World Objects/EnemyManager/StageMarker2"]
 [editable path="CameraStop"]

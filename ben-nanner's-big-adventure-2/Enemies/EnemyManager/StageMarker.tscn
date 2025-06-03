@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkkr20p4urn22"]
+
+[ext_resource type="Script" uid="uid://c3cmx67mlet0c" path="res://Enemies/EnemyManager/stage_marker.gd" id="1_mj5w5"]
+
+[node name="StageMarker" type="Area2D"]
+script = ExtResource("1_mj5w5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
