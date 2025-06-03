@@ -1,0 +1,26 @@
+[gd_scene load_steps=7 format=3 uid="uid://qh1bpnmvdjsx"]
+
+[ext_resource type="Script" uid="uid://b01jf7sv71t3c" path="res://Sounds/audio_player.gd" id="1_77eim"]
+[ext_resource type="AudioStream" uid="uid://cb1k4leajggc8" path="res://Sounds/Music/BNCA2FirstLevelM.wav" id="2_tuyvk"]
+[ext_resource type="AudioStream" uid="uid://cvl23biwlcgh5" path="res://Sounds/Music/MONKEYMODE.wav" id="3_nomtk"]
+[ext_resource type="AudioStream" uid="uid://dxrycerocr5u3" path="res://Sounds/Music/BNCA2IntroWAV.wav" id="4_yvaqy"]
+[ext_resource type="AudioStream" uid="uid://dnioyeiybentb" path="res://Sounds/Music/Title.wav" id="5_yvaqy"]
+[ext_resource type="AudioStream" uid="uid://dtr4sq37fdmdk" path="res://Sounds/Music/FinalBossTestAudio.mp3" id="6_ujgle"]
+
+[node name="MusicPlayer" type="Node"]
+script = ExtResource("1_77eim")
+
+[node name="Level1NM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_tuyvk")
+
+[node name="Level1MM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_nomtk")
+
+[node name="IntroNM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_yvaqy")
+
+[node name="TitleNM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_yvaqy")
+
+[node name="FinalBossNM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ujgle")

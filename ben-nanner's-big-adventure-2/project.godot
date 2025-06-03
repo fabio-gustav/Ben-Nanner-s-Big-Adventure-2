@@ -19,6 +19,7 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 SignalBus="*res://Globals/SignalBus.gd"
 PlayerVariables="*res://Globals/PlayerVariables.gd"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
+MusicPlayer="*res://Sounds/music_player.tscn"
 
 [dialogic]
 

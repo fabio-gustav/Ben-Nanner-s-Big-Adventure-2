@@ -185,6 +185,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_nhcly")
 }
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
 [connection signal="area_entered" from="AttackComponent" to="AttackComponent" method="_on_area_entered"]
 
 [editable path="AttackComponent"]

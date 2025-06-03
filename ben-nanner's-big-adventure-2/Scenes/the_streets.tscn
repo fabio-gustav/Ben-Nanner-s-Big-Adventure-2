@@ -1,10 +1,13 @@
-[gd_scene load_steps=9 format=4 uid="uid://dpmkmkxuwgw6g"]
+[gd_scene load_steps=12 format=4 uid="uid://dpmkmkxuwgw6g"]
 
 [ext_resource type="PackedScene" uid="uid://bnomfk3lvd0so" path="res://World/stage.tscn" id="1_267t3"]
+[ext_resource type="Script" uid="uid://dg74iju1b35sl" path="res://Scenes/the_streets.gd" id="1_okuc5"]
 [ext_resource type="PackedScene" uid="uid://do1dahnvpkvav" path="res://Player/Scenes/player.tscn" id="2_wxiv7"]
 [ext_resource type="Texture2D" uid="uid://b4epb3i60s3je" path="res://TempAssets/assets/Stage Layers/tileset.png" id="3_c3yh6"]
 [ext_resource type="PackedScene" uid="uid://16sf24sje0v3" path="res://Player/Scenes/player_camera.tscn" id="4_dau0d"]
 [ext_resource type="PackedScene" uid="uid://bmctbemo4ac5u" path="res://Componenets/camera_stop.tscn" id="5_c3yh6"]
+[ext_resource type="AudioStream" uid="uid://cb1k4leajggc8" path="res://Sounds/Music/BNCA2FirstLevelM.wav" id="8_15uwq"]
+[ext_resource type="AudioStream" uid="uid://cvl23biwlcgh5" path="res://Sounds/Music/MONKEYMODE.wav" id="9_2syrn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5yexc"]
 texture = ExtResource("3_c3yh6")
@@ -51,6 +54,9 @@ sources/0 = SubResource("TileSetAtlasSource_5yexc")
 b = Vector2(9, 985)
 
 [node name="TheStreets" type="Node2D"]
+script = ExtResource("1_okuc5")
+monkey_music = ExtResource("9_2syrn")
+no_monkey = ExtResource("8_15uwq")
 
 [node name="Stage" parent="." instance=ExtResource("1_267t3")]
 
@@ -65,9 +71,6 @@ position = Vector2(282.75, -131.75)
 
 [node name="CollisionShape2D" parent="Stage/Background/Bottom" index="0"]
 position = Vector2(289.25, 25)
-
-[node name="AudioManager" parent="Stage" index="1"]
-autoplay = true
 
 [node name="World Objects" type="Node2D" parent="."]
 

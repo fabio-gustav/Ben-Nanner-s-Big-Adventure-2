@@ -1,0 +1,26 @@
+[gd_scene load_steps=7 format=3 uid="uid://df3helmumy54"]
+
+[ext_resource type="Script" uid="uid://b01jf7sv71t3c" path="res://Sounds/audio_player.gd" id="1_sl1o0"]
+[ext_resource type="AudioStream" uid="uid://bdyy7xr3d6cbb" path="res://Sounds/Sound Effects/BenNannerGun.mp3" id="2_ctt17"]
+[ext_resource type="AudioStream" uid="uid://x3s34v3y4sb5" path="res://Sounds/Sound Effects/BenNannerJump.wav" id="3_2c5aw"]
+[ext_resource type="AudioStream" uid="uid://dn643qt70aij0" path="res://Sounds/Sound Effects/BenNannerLand.wav" id="4_pk0r0"]
+[ext_resource type="AudioStream" uid="uid://d0yskvohtba63" path="res://Sounds/Sound Effects/BENNANNEROWWWW.wav" id="5_kxil2"]
+[ext_resource type="AudioStream" uid="uid://bbscnwwuoae18" path="res://Sounds/Sound Effects/BenNannerPunch.wav" id="6_yee1x"]
+
+[node name="SFXPlayer" type="Node"]
+script = ExtResource("1_sl1o0")
+
+[node name="BenNannerGun" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ctt17")
+
+[node name="BenNannerJump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_2c5aw")
+
+[node name="BenNannerLand" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_pk0r0")
+
+[node name="MonkeyNoise" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_kxil2")
+
+[node name="BenNannerPunch" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_yee1x")
