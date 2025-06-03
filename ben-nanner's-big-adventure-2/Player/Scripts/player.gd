@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+class_name Player
 
 @export var health : int = 15
 @export var damage : int = 3
@@ -16,6 +16,7 @@ extends CharacterBody2D
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var attack_component: Area2D = $AttackComponent
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var hurtbox_component: HurtboxComponent = $HurtboxComponent
 
 @onready var jump_buffer : bool
 @onready var ground_level : float
@@ -30,6 +31,7 @@ func _ready() -> void:
 	jump_buffer = false
 	ground_level = position.y
 	state_machine.init(self,player_move_component)
+	attack_component.monitorable = false
 
 func _physics_process(_delta: float) -> void:
 	state_machine.process_physics(_delta)

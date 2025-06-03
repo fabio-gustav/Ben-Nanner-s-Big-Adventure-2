@@ -1,0 +1,242 @@
+[gd_scene load_steps=23 format=3 uid="uid://ciho60quxhp57"]
+
+[ext_resource type="PackedScene" uid="uid://bblo0gd5ah36e" path="res://Componenets/Scenes/health_component.tscn" id="1_h1dw7"]
+[ext_resource type="Script" uid="uid://dvyidmltpnbhf" path="res://Enemies/melee_enemy.gd" id="1_kxpn1"]
+[ext_resource type="Texture2D" uid="uid://brjgxsp0g4ag4" path="res://TempAssets/assets/art/characters/enemy_punk.png" id="1_p342s"]
+[ext_resource type="Script" uid="uid://bcx2cprk6qix3" path="res://Componenets/Scripts/state_machine.gd" id="2_2nuyn"]
+[ext_resource type="PackedScene" uid="uid://bhq374o5vwk1d" path="res://Componenets/Scenes/hurtbox_component.tscn" id="2_h1dw7"]
+[ext_resource type="PackedScene" uid="uid://ci3lvsf3qqvm5" path="res://Componenets/Scenes/attack_component.tscn" id="2_wij5h"]
+[ext_resource type="Script" uid="uid://dwc854lrw4sn8" path="res://Enemies/enemy_move_component.gd" id="3_emacm"]
+[ext_resource type="Script" uid="uid://txnnf42fydfo" path="res://Enemies/enemy_idle.gd" id="3_hoqad"]
+[ext_resource type="Script" uid="uid://c71fj5wyqs03p" path="res://Enemies/enemy_run.gd" id="4_rrl2d"]
+[ext_resource type="Script" uid="uid://dpo0xy78pefkt" path="res://Enemies/enemy_hit.gd" id="5_2fnwl"]
+[ext_resource type="Script" uid="uid://biqf2s0wviva4" path="res://Enemies/enemy_attack.gd" id="6_kxpn1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rrl2d"]
+radius = 81.6668
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rrl2d"]
+radius = 0.264
+height = 1.344
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h1dw7"]
+radius = 0.52
+height = 3.84
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rrl2d"]
+size = Vector2(3, 1.72)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2fnwl"]
+radius = 1.64
+height = 6.48
+
+[sub_resource type="Animation" id="Animation_kxpn1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_2nuyn"]
+resource_name = "attack"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [21, 22]
+}
+
+[sub_resource type="Animation" id="Animation_3rgbe"]
+resource_name = "hit"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [40, 41, 42]
+}
+
+[sub_resource type="Animation" id="Animation_rrl2d"]
+resource_name = "idle"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_2fnwl"]
+resource_name = "run"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [10, 11, 12, 13, 14, 15, 16, 17]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2fnwl"]
+_data = {
+&"RESET": SubResource("Animation_kxpn1"),
+&"attack": SubResource("Animation_2nuyn"),
+&"hit": SubResource("Animation_3rgbe"),
+&"idle": SubResource("Animation_rrl2d"),
+&"run": SubResource("Animation_2fnwl")
+}
+
+[node name="MeleeEnemy" type="CharacterBody2D"]
+scale = Vector2(5, 5)
+collision_layer = 8
+collision_mask = 31
+script = ExtResource("1_kxpn1")
+damage = 1
+
+[node name="AttackSpeed" type="Timer" parent="."]
+
+[node name="RecoveryTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DetectionRadius" type="Area2D" parent="."]
+z_as_relative = false
+scale = Vector2(5, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRadius"]
+visible = false
+position = Vector2(0, -12)
+shape = SubResource("CircleShape2D_rrl2d")
+
+[node name="StoppingRadius" type="Area2D" parent="."]
+scale = Vector2(5, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StoppingRadius"]
+position = Vector2(1.64, -2.4)
+rotation = 1.5708
+scale = Vector2(5, 5)
+shape = SubResource("CapsuleShape2D_rrl2d")
+
+[node name="MovementStateMachine" type="Node" parent="." node_paths=PackedStringArray("intitialState")]
+script = ExtResource("2_2nuyn")
+intitialState = NodePath("EnemyIdle")
+
+[node name="EnemyIdle" type="Node" parent="MovementStateMachine" node_paths=PackedStringArray("run_state", "attack_state", "hit_state")]
+script = ExtResource("3_hoqad")
+run_state = NodePath("../EnemyRun")
+attack_state = NodePath("../EnemyAttack")
+hit_state = NodePath("../EnemyHit")
+
+[node name="EnemyRun" type="Node" parent="MovementStateMachine" node_paths=PackedStringArray("idle_state", "attack_state", "hit_state")]
+script = ExtResource("4_rrl2d")
+idle_state = NodePath("../EnemyIdle")
+attack_state = NodePath("../EnemyAttack")
+hit_state = NodePath("../EnemyHit")
+
+[node name="EnemyHit" type="Node" parent="MovementStateMachine" node_paths=PackedStringArray("run_state", "attack_state", "idle_state")]
+script = ExtResource("5_2fnwl")
+run_state = NodePath("../EnemyRun")
+attack_state = NodePath("../EnemyAttack")
+idle_state = NodePath("../EnemyIdle")
+
+[node name="EnemyAttack" type="Node" parent="MovementStateMachine" node_paths=PackedStringArray("idle_state", "run_state", "hit_state")]
+script = ExtResource("6_kxpn1")
+idle_state = NodePath("../EnemyIdle")
+run_state = NodePath("../EnemyRun")
+hit_state = NodePath("../EnemyHit")
+
+[node name="HealthComponent" parent="." instance=ExtResource("1_h1dw7")]
+MAX_HEALTH = 15.0
+
+[node name="EnemyMoveComponent" type="Node" parent="."]
+script = ExtResource("3_emacm")
+
+[node name="CharacterSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -24)
+texture = ExtResource("1_p342s")
+hframes = 10
+vframes = 10
+
+[node name="ShadowSprite" type="Sprite2D" parent="."]
+scale = Vector2(5, 5)
+
+[node name="EnemyCollider" type="CollisionShape2D" parent="."]
+position = Vector2(1.4, -1.8)
+rotation = 1.5708
+scale = Vector2(5, 5)
+shape = SubResource("CapsuleShape2D_h1dw7")
+
+[node name="AttackComponent" parent="." instance=ExtResource("2_wij5h")]
+scale = Vector2(5, 5)
+
+[node name="CollisionShape2D" parent="AttackComponent" index="0"]
+position = Vector2(3.72, -2.44)
+shape = SubResource("RectangleShape2D_rrl2d")
+
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_h1dw7")]
+scale = Vector2(5, 5)
+collision_layer = 28
+collision_mask = 28
+monitoring = true
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" parent="HurtboxComponent" index="0"]
+position = Vector2(0.12, -2.48)
+shape = SubResource("CapsuleShape2D_2fnwl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_2fnwl")
+}
+
+[connection signal="timeout" from="AttackSpeed" to="MovementStateMachine/EnemyAttack" method="_on_attack_speed_timeout"]
+[connection signal="timeout" from="RecoveryTimer" to="MovementStateMachine/EnemyHit" method="_on_recovery_timer_timeout"]
+[connection signal="area_entered" from="DetectionRadius" to="MovementStateMachine/EnemyIdle" method="_on_detection_radius_area_entered"]
+[connection signal="area_entered" from="DetectionRadius" to="MovementStateMachine/EnemyRun" method="_on_detection_radius_area_entered"]
+[connection signal="area_exited" from="DetectionRadius" to="MovementStateMachine/EnemyRun" method="_on_detection_radius_area_exited"]
+[connection signal="area_entered" from="StoppingRadius" to="MovementStateMachine/EnemyRun" method="_on_stopping_radius_area_entered"]
+[connection signal="area_exited" from="StoppingRadius" to="." method="_on_stopping_radius_area_exited"]
+[connection signal="area_exited" from="StoppingRadius" to="MovementStateMachine/EnemyIdle" method="_on_stopping_radius_area_exited"]
+[connection signal="area_exited" from="StoppingRadius" to="MovementStateMachine/EnemyRun" method="_on_stopping_radius_area_exited"]
+[connection signal="area_exited" from="StoppingRadius" to="MovementStateMachine/EnemyAttack" method="_on_stopping_radius_area_exited"]
+[connection signal="animation_finished" from="AnimationPlayer" to="MovementStateMachine/EnemyAttack" method="_on_animation_player_animation_finished"]
+
+[editable path="AttackComponent"]
+[editable path="HurtboxComponent"]

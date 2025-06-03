@@ -72,10 +72,8 @@ autoplay = true
 
 [node name="World Objects" type="Node2D" parent="."]
 
-[node name="MeleeEnemy" parent="World Objects" node_paths=PackedStringArray("player", "playerAttack") instance=ExtResource("6_5yexc")]
+[node name="MeleeEnemy" parent="World Objects" instance=ExtResource("6_5yexc")]
 position = Vector2(1459, 118)
-player = NodePath("../Player")
-playerAttack = NodePath("../Player/MovementStateMachine/PlayerAttack")
 
 [node name="Player" parent="World Objects" instance=ExtResource("2_wxiv7")]
 position = Vector2(839, 246)
@@ -93,7 +91,4 @@ position = Vector2(2716, -390)
 shape = SubResource("SegmentShape2D_5yexc")
 
 [editable path="Stage"]
-[editable path="World Objects/Player"]
-[editable path="World Objects/Player/HurtboxComponent"]
-[editable path="World Objects/Player/AttackComponent"]
 [editable path="CameraStop"]
