@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var player : Player
 @export var playerAttack : State
+@export var groupNumber : int
 
 @export var damage : int = 3
 @export var speed : float = 50
@@ -26,8 +27,11 @@ extends CharacterBody2D
 
 var past_health = 0
 var current_health = 0
+var dead = false
 
 func _ready() -> void:
+	self.visible = false
+	process_mode = PROCESS_MODE_DISABLED
 	past_health = health_component.health
 	current_health = health_component.health
 	state_machine.init(self,enemy_move_component)
@@ -61,4 +65,12 @@ func flip_sprites() -> void:
 func hit() -> void:
 	state_machine.change_state(state_hit)
 	past_health = current_health
-		
+	
+func death() -> void:
+	self.visible = false
+	dead = true
+	process_mode = PROCESS_MODE_DISABLED
+	
+	
+func _on_tree_entered() -> void:
+	get_parent().enemies.append(self)

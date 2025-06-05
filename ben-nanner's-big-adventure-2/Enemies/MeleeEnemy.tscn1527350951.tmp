@@ -129,6 +129,11 @@ collision_layer = 8
 collision_mask = 31
 script = ExtResource("1_kxpn1")
 damage = 1
+speed = null
+friction = null
+acceleration = null
+attackSpeed = null
+recoveryTime = null
 
 [node name="AttackSpeed" type="Timer" parent="."]
 
@@ -226,7 +231,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_2fnwl")
 }
 
-[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 [connection signal="timeout" from="AttackSpeed" to="MovementStateMachine/EnemyAttack" method="_on_attack_speed_timeout"]
 [connection signal="timeout" from="RecoveryTimer" to="MovementStateMachine/EnemyHit" method="_on_recovery_timer_timeout"]
 [connection signal="area_entered" from="DetectionRadius" to="MovementStateMachine/EnemyIdle" method="_on_detection_radius_area_entered"]

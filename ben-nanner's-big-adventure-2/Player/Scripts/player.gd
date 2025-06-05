@@ -31,7 +31,7 @@ func _ready() -> void:
 	jump_buffer = false
 	ground_level = position.y
 	state_machine.init(self,player_move_component)
-	attack_component.monitorable = false
+	attack_component.monitoring = false
 
 func _physics_process(_delta: float) -> void:
 	state_machine.process_physics(_delta)
@@ -55,4 +55,7 @@ func flip_sprites() -> void:
 	elif  velocity.x < 0.0 and character_sprite.flip_h == false:
 		character_sprite.flip_h = true
 		attack_component.scale.x = -1
+		
+func death() -> void:
+	self.visible = false
 		
